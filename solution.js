@@ -61,3 +61,31 @@ function getJsBasicsKeywordMeaning(term) {
 
   return map[term] || "unknown";
 }
+
+function filterSupportedJsBasicsTopics(topics) {
+  // write your code here
+  const map = {
+    node: "node",
+    runtime: "node",
+    v8: "v8",
+    engine: "v8",
+    npm: "npm",
+    "package-manager": "npm"
+  };
+
+  let result = [];
+
+  for (let topic of topics) {
+    topic = topic.trim().toLowerCase();
+
+    if (map[topic]) {
+      let value = map[topic];
+
+      if (!result.includes(value)) {
+        result.push(value);
+      }
+    }
+  }
+
+  return result;
+}
