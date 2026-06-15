@@ -127,3 +127,21 @@ function summarizeJsBasicsResults(results) {
     skipped: skipped
   };
 }
+
+function mergeJsBasicsConfig(defaultConfig, overrideConfig) {
+  let result = {};
+
+  for (let key in defaultConfig) {
+    result[key] = defaultConfig[key];
+  }
+
+  for (let key in overrideConfig) {
+    result[key] = overrideConfig[key];
+  }
+
+  if (result.retries === undefined) {
+    result.retries= 0;
+  }
+
+  return result;
+}
