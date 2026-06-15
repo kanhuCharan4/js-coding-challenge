@@ -187,3 +187,18 @@ function summarizeJsBasicsMatrix(matrix) {
     failedCases: failedCases
   };
 }
+
+function createUniqueJsBasicsTags(tags) {
+   let result = [];
+
+  for (let tag of tags) {
+    tag = tag.trim().toLowerCase();
+
+    if (tag !== "" && !result.includes(tag)) {
+      result.push(tag);
+    }
+  }
+
+  return result;
+}
+
