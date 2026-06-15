@@ -102,3 +102,28 @@ let count = 0;
   return count;
 
 }
+
+function summarizeJsBasicsResults(results) {
+  // write your code here
+
+  let passed = 0, failed = 0, skipped = 0;
+
+  for (let result of results) { 
+    result = result.toLowerCase();
+
+    if (result.includes("pass")) {
+      passed++;
+    } else if (result.includes("fail")) {
+      failed++;
+    } else if (result.includes("skip")) {
+      skipped++;
+    }
+  }
+
+  return {
+    total: results.length,
+    passed: passed,
+    failed: failed,
+    skipped: skipped
+  };
+}
