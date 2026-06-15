@@ -160,3 +160,30 @@ function findFirstCriticalJsBasicsBug(bugs) {
 
   return "No critical bug";
 }
+
+function summarizeJsBasicsMatrix(matrix) {
+  let total = 0;
+  let passed = 0;
+  let failed = 0;
+  let failedCases = [];
+
+  for (let row of matrix) {
+    for (let result of row) {
+      total++;
+
+      if (result.toLowerCase().includes("pass")) {
+        passed++;
+      } else if (result.toLowerCase().includes("fail")) {
+        failed++;
+        failedCases.push(result);
+      }
+    }
+  }
+
+  return {
+    total: total,
+    passed: passed,
+    failed: failed,
+    failedCases: failedCases
+  };
+}
