@@ -1,0 +1,63 @@
+function normalizeJsBasicsLabel(label) {
+  let result = "";
+
+  for (let ch of label.trim().toLowerCase()) { 
+
+    if ((ch >= "a" && ch <= "z") ||
+      (ch >= "0" && ch <= "9")) {
+      result += ch;
+    }
+    else if (result.length > 0 && result[result.length - 1] !== "-") { 
+      result += "-";
+    }
+
+  }
+
+  if (result.endsWith("-")) { result = result.slice(0, -1); }
+
+  if (result === "") {
+  return "js-basic";
+}
+
+  return "js-basic-" + result;
+}
+
+function isValidJsBasicsIdentifier(name) {
+  name = name.trim();
+  if (name == "") { return false; }
+
+  if (name == "let" || name == "const" || name == "var" || name == "class" ||
+    name == "function" || name == "return") { 
+    return false;
+  }
+
+  let first = name[0];
+
+  if (!((first >= "a" && first <= "z") || (first >= "A" && first <= "Z") || first == "_" || first == "$")) { return false; }
+
+  return true;
+}
+
+function classifyJsBasicsScore(score) {
+  if (score >= 90) {
+    return "EXCELLENT";
+  } else if (score >= 75) {
+    return "GOOD";
+  } else if (score >= 50) {
+    return "NEEDS_PRACTICE";
+  } else { 
+    return "REVISIT";
+  }
+}
+
+function getJsBasicsKeywordMeaning(term) {
+  term = term.trim().toLowerCase();
+
+  const map = {
+    node: "runtime",
+    v8: "engine",
+    npm: "package-manager"
+  };
+
+  return map[term] || "unknown";
+}
